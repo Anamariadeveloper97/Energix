@@ -8,6 +8,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  
     <script>
       tailwind.config = {
         theme: {
@@ -29,6 +31,7 @@
       }
     </style>
   </head>
+    
   <body class="bg-dark text-white font-poppins">
 
   <!-- Navbar -->
@@ -102,7 +105,7 @@
   </section>
 
   <!-- Beneficios -->
-  <section id="beneficios" class="py-16 bg-white">
+  <section id="beneficios" data-aos="fade-up" data-aos-duration="1000">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-900 mb-2">Beneficios Incomparables</h2>
@@ -137,17 +140,17 @@
         <p class="text-gray-600 max-w-2xl mx-auto">Cada presentación de ENERGIX está diseñada para adaptarse a tu estilo de vida.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="card bg-white rounded-xl p-6 shadow-lg text-center">
+        <div class="card" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="800">
           <img src="clasica.webp" class="mx-auto mb-4" alt="Clásica" />
           <h3 class="text-xl font-semibold text-gray-900 mb-2">Clásica</h3>
           <p class="text-gray-600">El sabor original que te da el impulso necesario para comenzar tu día.</p>
         </div>
-        <div class="card bg-white rounded-xl p-6 shadow-lg text-center">
+        <div class="card" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="800">
           <img src="zero.webp" class="mx-auto mb-4" alt="Zero Azúcar" />
           <h3 class="text-xl font-semibold text-gray-900 mb-2">Zero Azúcar</h3>
           <p class="text-gray-600">La misma energía de siempre, sin azúcares añadidos. Ideal para cuidarte.</p>
         </div>
-        <div class="card bg-white rounded-xl p-6 shadow-lg text-center">
+        <div class="card" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="800">
           <img src="extreme.webp" class="mx-auto mb-4" alt="Extreme" />
           <h3 class="text-xl font-semibold text-gray-900 mb-2">Extreme</h3>
           <p class="text-gray-600">Para quienes necesitan llevar su energía al máximo. ¡Poder extremo!</p>
@@ -219,7 +222,12 @@
     <footer class="bg-dark py-4 text-center text-gray-500 text-sm">
       © 2025 Ana Maria Patiño Narvaez. Proyecto ficticio para portafolio.
     </footer>
-  
+  <!-- AOS: Script para activar -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init(); // Aquí activamos la librería
+</script>
+
 </body>
 </html>
 

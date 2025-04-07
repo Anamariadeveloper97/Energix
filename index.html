@@ -6,32 +6,31 @@
   <title>ENERGIX - Bebida Energizante</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      scroll-behavior: smooth;
-    }
-    .hero-gradient {
-      background: linear-gradient(90deg, #0f172a 0%, #1e293b 100%);
-    }
-    .btn-energix {
-      background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
-      transition: all 0.3s ease;
-    }
-    .btn-energix:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
-    }
-    .card {
-      transition: all 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-  </style>
-</head>
-<body class="bg-gray-50">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              poppins: ['Poppins', 'sans-serif'],
+            },
+            colors: {
+              primary: '#00c897',
+              dark: '#0f172a'
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="bg-dark text-white font-poppins">
+
   <!-- Navbar -->
   <nav class="bg-white shadow-md fixed w-full z-10">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -188,6 +187,21 @@
       </form>
     </div>
   </section>
+
+   <!-- Sobre el proyecto -->
+   <section id="sobre" class="py-16 bg-gray-900">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-primary mb-6">Sobre este proyecto</h2>
+      <p class="text-gray-300 max-w-3xl mx-auto">
+        Este landing page fue diseñado y desarrollado por Ana Maria Patiño Narvaez como parte de su portafolio profesional. Utiliza HTML5, TailwindCSS y prácticas modernas de diseño web para simular el lanzamiento de una bebida energizante ficticia.
+      </p>
+    </div>
+  </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark py-4 text-center text-gray-500 text-sm">
+      © 2025 Ana Maria Patiño Narvaez. Proyecto ficticio para portafolio.
+    </footer>
   
 </body>
 </html>

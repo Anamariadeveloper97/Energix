@@ -32,36 +32,53 @@
   <body class="bg-dark text-white font-poppins">
 
   <!-- Navbar -->
-  <nav class="bg-white shadow-md fixed w-full z-10">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <span class="text-blue-600 text-2xl font-bold">ENERGIX</span>
-      </div>
-      <div class="hidden md:flex space-x-8">
-        <a href="#inicio" class="text-gray-800 hover:text-blue-600 font-medium">Inicio</a>
-        <a href="#beneficios" class="text-gray-800 hover:text-blue-600 font-medium">Beneficios</a>
-        <a href="#productos" class="text-gray-800 hover:text-blue-600 font-medium">Productos</a>
-        <a href="#testimonios" class="text-gray-800 hover:text-blue-600 font-medium">Testimonios</a>
-        <a href="#contacto" class="text-gray-800 hover:text-blue-600 font-medium">Contacto</a>
-      </div>
-      <div class="md:hidden">
-        <button id="menu-toggle" class="text-gray-800 focus:outline-none">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
+  <!-- Navbar con menú hamburguesa -->
+<nav class="bg-white shadow-md fixed w-full z-10">
+  <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+    <!-- Logo -->
+    <span class="text-blue-600 text-2xl font-bold">ENERGIX</span>
+
+    <!-- Ítems del menú en pantallas grandes -->
+    <div class="hidden md:flex space-x-8">
+      <a href="#inicio" class="text-gray-800 hover:text-blue-600 font-medium">Inicio</a>
+      <a href="#beneficios" class="text-gray-800 hover:text-blue-600 font-medium">Beneficios</a>
+      <a href="#productos" class="text-gray-800 hover:text-blue-600 font-medium">Productos</a>
+      <a href="#testimonios" class="text-gray-800 hover:text-blue-600 font-medium">Testimonios</a>
+      <a href="#contacto" class="text-gray-800 hover:text-blue-600 font-medium">Contacto</a>
     </div>
-    <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
-      <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
-        <a href="#inicio" class="text-gray-800 hover:text-blue-600 font-medium py-2">Inicio</a>
-        <a href="#beneficios" class="text-gray-800 hover:text-blue-600 font-medium py-2">Beneficios</a>
-        <a href="#productos" class="text-gray-800 hover:text-blue-600 font-medium py-2">Productos</a>
-        <a href="#testimonios" class="text-gray-800 hover:text-blue-600 font-medium py-2">Testimonios</a>
-        <a href="#contacto" class="text-gray-800 hover:text-blue-600 font-medium py-2">Contacto</a>
-      </div>
+
+    <!-- Icono del menú hamburguesa en móviles -->
+    <div class="md:hidden">
+      <button id="menu-toggle" class="text-gray-800 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
     </div>
-  </nav>
+  </div>
+
+  <!-- Menú desplegable solo visible en móviles -->
+  <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
+    <div class="px-4 py-4 space-y-2">
+      <a href="#inicio" class="block text-gray-800 hover:text-blue-600">Inicio</a>
+      <a href="#beneficios" class="block text-gray-800 hover:text-blue-600">Beneficios</a>
+      <a href="#productos" class="block text-gray-800 hover:text-blue-600">Productos</a>
+      <a href="#testimonios" class="block text-gray-800 hover:text-blue-600">Testimonios</a>
+      <a href="#contacto" class="block text-gray-800 hover:text-blue-600">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const toggleBtn = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  toggleBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+
 
   <!-- Hero -->
   <section id="inicio" class="pt-24 pb-12 hero-gradient">

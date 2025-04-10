@@ -237,18 +237,19 @@
         mensaje: mensaje
       };
   
-      // Realizar la solicitud POST
+      // Realizar la solicitud POST al script de Google Apps
       fetch('https://script.google.com/macros/s/AKfycbx6KO4cMcSSGMzsvFkaJ9985EzsLZEEEgMg7FkShU-sUPfL6QMDHQ3jbkZpAtbad04-/exec', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData) // Enviar los datos como JSON
       })
-      .then(response => response.json())
+      .then(response => response.json()) // Respuesta en formato JSON
       .then(data => {
         console.log('Success:', data);
         alert('Mensaje enviado correctamente');
+        document.getElementById('contact-form').reset(); // Resetear el formulario después de enviar
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -256,6 +257,7 @@
       });
     });
   </script>
+  
   
   
    <!-- Sobre el proyecto -->
@@ -271,7 +273,7 @@
 
     <!-- Footer -->
     <footer class="bg-dark py-4 text-center text-red-500 text-sm">
-      © 2025 Pura Fruta. Derechos reservados 🍓🍉
+      © 2025 Pura Fruta. Derechos reservados 🍓🍉🥝🍍
     </footer>
   <!-- AOS: Script para activar -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

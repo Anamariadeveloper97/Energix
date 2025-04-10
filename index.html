@@ -63,7 +63,7 @@
   </div>
 
   <!-- Menú desplegable solo visible en móviles -->
-  <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-red-700">
+  <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-red-700 transition-all duration-500 ease-in-out transform opacity-0 scale-y-0 origin-top">
     <div class="px-4 py-4 space-y-2">
       <a href="#inicio" class="block text-green-800 hover:text-blue-600">Inicio</a>
       <a href="#beneficios" class="block text-green-800 hover:text-blue-600">Beneficios</a>
@@ -75,13 +75,24 @@
 </nav>
 
 <script>
-  const toggleBtn = document.getElementById('menu-toggle');
+  const toggleButton = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
 
-  toggleBtn.addEventListener('click', () => {
+  toggleButton.addEventListener('click', () => {
     mobileMenu.classList.toggle('hidden');
+
+    if (mobileMenu.classList.contains('hidden')) {
+      mobileMenu.classList.remove('opacity-100', 'scale-y-100');
+      mobileMenu.classList.add('opacity-0', 'scale-y-0');
+    } else {
+      setTimeout(() => {
+        mobileMenu.classList.remove('opacity-0', 'scale-y-0');
+        mobileMenu.classList.add('opacity-100', 'scale-y-100');
+      }, 10); // Pequeño delay para asegurar la transición
+    }
   });
 </script>
+
 
 
   <!-- Hero -->
@@ -229,8 +240,6 @@
   <script>
     AOS.init();
   </script>
-  
-
 </body>
 </html>
 

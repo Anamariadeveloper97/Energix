@@ -200,26 +200,69 @@
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold mb-2">¿Quieres distribuir Pura Fruta?</h2>
-        <p class="text-gray-300 max-w-xl mx-auto">Contáctanos y únete al movimiento energético que está conquistando el país.</p>
+        <p class="text-gray-300 max-w-xl mx-auto">
+          Contáctanos y únete al movimiento energético que está conquistando el país.
+        </p>
       </div>
-      <form class="max-w-xl mx-auto bg-white rounded-xl p-6 shadow-md text-gray-800 space-y-4">
+  
+      <form id="contacto-form" class="max-w-xl mx-auto bg-white rounded-xl p-6 shadow-md text-gray-800 space-y-4">
         <div>
           <label class="block mb-1 font-semibold">Nombre</label>
-          <input type="text" class="w-full border rounded-lg px-4 py-2" placeholder="Tu nombre" />
+          <input name="nombre" type="text" class="w-full border rounded-lg px-4 py-2" placeholder="Tu nombre" required />
         </div>
         <div>
           <label class="block mb-1 font-semibold">Correo electrónico</label>
-          <input type="email" class="w-full border rounded-lg px-4 py-2" placeholder="tucorreo@ejemplo.com" />
+          <input name="email" type="email" class="w-full border rounded-lg px-4 py-2" placeholder="tucorreo@ejemplo.com" required />
         </div>
         <div>
           <label class="block mb-1 font-semibold">Mensaje</label>
-          <textarea rows="4" class="w-full border rounded-lg px-4 py-2" placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
+          <textarea name="mensaje" rows="4" class="w-full border rounded-lg px-4 py-2" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
         </div>
         <button type="submit" class="btn-energix text-white px-6 py-3 rounded-full">Enviar mensaje</button>
+        <p id="respuesta" class="text-green-600 font-semibold pt-2"></p>
       </form>
     </div>
   </section>
-
+  
+  <!-- SCRIPT para enviar los datos a Google Sheets -->
+  <script>
+    const formulario = document.getElementById('contacto-form');
+    const respuesta = document.getElementById('respuesta');
+  
+    formulario.addEventListener('submit', async (e) => {
+      e.preventDefault();
+  
+      const datos = {
+        nombre: formulario.nombre.value,
+        email: formulario.email.value,
+        mensaje: formulario.mensaje.value,
+      };
+  
+      const url = 'https://script.google.com/macros/s/PASTE-YOUR-URL-HERE/exec'; // ⚠️ Reemplaza con tu URL
+  
+      try {
+        const res = await fetch(url, {
+          method: 'POST',
+          body: JSON.stringify(datos),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+  
+        const result = await res.json();
+  
+        if (result.result === "OK") {
+          respuesta.textContent = "¡Mensaje enviado con éxito!";
+          formulario.reset();
+        } else {
+          respuesta.textContent = "Hubo un error al enviar.";
+        }
+      } catch (error) {
+        respuesta.textContent = "Error de conexión. Intenta nuevamente.";
+      }
+    });
+  </script>
+  
    <!-- Sobre el proyecto -->
    <section id="sobre" class="py-16 bg-black-900">
     <div class="container mx-auto px-4 text-center">

@@ -241,6 +241,79 @@
     </div>
   </section>
 
+<!-- Chatbot Interactivo para Pura Fruta -->
+<div class="fixed bottom-6 right-6 z-50">
+  <button id="chat-toggle" class="bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600">
+    💬
+  </button>
+
+  <div id="chat-box" class="hidden bg-white shadow-2xl rounded-lg p-4 w-80 mt-2 border border-gray-200">
+    <h3 class="text-lg font-bold text-green-600 mb-2">Pura Fruta 🍍</h3>
+    <div id="chat-messages" class="h-48 overflow-y-auto text-sm text-gray-700 mb-2 p-1 space-y-2">
+      <p><strong>Bot:</strong> ¡Hola! ¿Cómo puedo ayudarte hoy? 😊</p>
+      <div class="space-y-1">
+        <button onclick="handleOption('compra')" class="bg-green-100 w-full text-left px-3 py-1 rounded hover:bg-green-200">🛍️ Comprar</button>
+        <button onclick="handleOption('info')" class="bg-green-100 w-full text-left px-3 py-1 rounded hover:bg-green-200">📦 Información del producto</button>
+        <button onclick="handleOption('punto')" class="bg-green-100 w-full text-left px-3 py-1 rounded hover:bg-green-200">📍 Puntos de venta</button>
+        <button onclick="handleOption('contacto')" class="bg-green-100 w-full text-left px-3 py-1 rounded hover:bg-green-200">📲 Contacto</button>
+      </div>
+    </div>
+    <div id="chat-input-area" class="hidden">
+      <input id="chat-input" type="text" class="w-full border rounded px-2 py-1 text-sm" placeholder="Escribe aquí...">
+    </div>
+  </div>
+</div>
+
+<!-- Script Funcional -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleButton = document.getElementById('chat-toggle');
+    const chatBox = document.getElementById('chat-box');
+
+    toggleButton.addEventListener('click', () => {
+      chatBox.classList.toggle('hidden');
+    });
+  });
+
+  function handleOption(option) {
+    const chatMessages = document.getElementById('chat-messages');
+
+    if (option === 'compra') {
+      chatMessages.innerHTML += `
+        <p><strong>Tú:</strong> Comprar</p>
+        <p><strong>Bot:</strong> ¡Genial! Puedes realizar tu pedido escribiéndonos directamente por WhatsApp. 🍓</p>
+        <a href="wa.link/zvjutt" target="_blank" class="block mt-2 text-green-600 underline">Ir a WhatsApp</a>
+      `;
+    }
+
+    if (option === 'info') {
+      chatMessages.innerHTML += `
+        <p><strong>Tú:</strong> Información del producto</p>
+        <p><strong>Bot:</strong> Nuestras bebidas están hechas 100% de fruta natural 🍍, sin azúcar añadida. Sabores: fresa, mango, kiwi, piña y sandía.</p>
+      `;
+    }
+
+    if (option === 'punto') {
+      chatMessages.innerHTML += `
+        <p><strong>Tú:</strong> Puntos de venta</p>
+        <p><strong>Bot:</strong> Puedes encontrarnos en tiendas locales, ferias artesanales y próximamente en supermercados de Medellín. 🛒</p>
+      `;
+    }
+
+    if (option === 'contacto') {
+      chatMessages.innerHTML += `
+        <p><strong>Tú:</strong> Contacto</p>
+        <p><strong>Bot:</strong> ¿Deseas hablar con nosotros directamente? Haz clic aquí 👇</p>
+        <a href="https://wa.me/573001112233?text=Hola%2C%20quiero%20más%20información%20sobre%20Pura%20Fruta!%20🍓" target="_blank" class="block mt-2 text-green-600 underline">📲 WhatsApp</a>
+      `;
+    }
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+</script>
+
+  
+
     <!-- Footer -->
     <footer class="bg-dark py-4 text-center text-red-500 text-sm">
       © 2025 Pura Fruta. Derechos reservados 🍓🍉🥝

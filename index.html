@@ -265,51 +265,100 @@
 </div>
 
 <!-- Script Funcional -->
+<!-- Chatbot container -->
+<div id="chatbot" style="position: fixed; bottom: 20px; right: 20px; max-width: 300px; background: #fff; border-radius: 10px; padding: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.2); font-family: sans-serif;">
+  <div id="chat" style="max-height: 300px; overflow-y: auto;"></div>
+</div>
+
+<!-- Chatbot script -->
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const toggleButton = document.getElementById('chat-toggle');
-    const chatBox = document.getElementById('chat-box');
+  const chatbotFlow = {
+    inicio: {
+      mensaje: "🍓 ¡Hola! Soy el asistente de Pura Fruta. ¿En qué puedo ayudarte?",
+      opciones: {
+        "🛒 Comprar productos": "compra",
+        "ℹ️ Información del producto": "info",
+        "📍 Punto de venta": "puntoVenta",
+        "📞 Contacto de compra": "contacto"
+      }
+    },
+    compra: {
+      mensaje: "¡Genial! ¿Qué producto deseas comprar?",
+      opciones: {
+        "Fresa 🍓": "pago",
+        "Kiwi 🥝": "pago",
+        "Sandía 🍉": "pago",
+        "Piña 🍍": "pago",
+        "Mango 🥭": "pago"
+      }
+    },
+    pago: {
+      mensaje: "🧾 ¿Cómo deseas pagar?",
+      opciones: {
+        "💬 WhatsApp": "pagoWhatsapp",
+        "🏦 Transferencia bancaria": "pagoBancos",
+        "🌐 Pago en línea": "pagoOnline"
+      }
+    },
+    pagoWhatsapp: {
+      mensaje: "Haz clic en el enlace para pagar por WhatsApp:",
+      link: "https://api.whatsapp.com/send?phone=573046215719&text=%C2%A1Hola!%20%F0%9F%91%8B%F0%9F%8D%93%20Bienvenido%20a%20Pura%20Fruta%2C%20bebidas%20100%25%20naturales%20y%20llenas%20de%20sabor.%20%C2%BFTe%20gustar%C3%ADa%20hacer%20un%20pedido%20o%20conocer%20m%C3%A1s%20sobre%20nuestros%20productos%3F%20%F0%9F%9B%8D%EF%B8%8F%E2%9C%A8%0A"
+    },
+    pagoBancos: {
+      mensaje: "Puedes transferir a Bancolombia, Nequi o Daviplata al número: 3001112233."
+    },
+    pagoOnline: {
+      mensaje: "Enlace para pagos online próximamente disponible. ¡Gracias por tu interés!"
+    },
+    info: {
+      mensaje: "Nuestros productos son 100% naturales, sin conservantes y hechos con frutas frescas 🍓🥭🍍"
+    },
+    puntoVenta: {
+      mensaje: "📍 Estamos ubicados en el centro comercial Frutal Plaza, local 12."
+    },
+    contacto: {
+      mensaje: "📱 Contáctanos vía WhatsApp aquí:",
+      link: "https://api.whatsapp.com/send?phone=573046215719&text=%C2%A1Hola!%20%F0%9F%91%8B%F0%9F%8D%93%20Bienvenido%20a%20Pura%20Fruta%2C%20bebidas%20100%25%20naturales%20y%20llenas%20de%20sabor.%20%C2%BFTe%20gustar%C3%ADa%20hacer%20un%20pedido%20o%20conocer%20m%C3%A1s%20sobre%20nuestros%20productos%3F%20%F0%9F%9B%8D%EF%B8%8F%E2%9C%A8%0A"
+    }
+  };
 
-    toggleButton.addEventListener('click', () => {
-      chatBox.classList.toggle('hidden');
-    });
-  });
+  let estadoActual = 'inicio';
 
-  function handleOption(option) {
-    const chatMessages = document.getElementById('chat-messages');
+  function mostrarMensaje(nombreEstado) {
+    const estado = chatbotFlow[nombreEstado];
+    const chat = document.getElementById('chat');
+    chat.innerHTML += `<div style="margin-bottom: 10px;"><strong>${estado.mensaje}</strong></div>`;
 
-    if (option === 'compra') {
-      chatMessages.innerHTML += `
-        <p><strong>Tú:</strong> Comprar</p>
-        <p><strong>Bot:</strong> ¡Genial! Puedes realizar tu pedido escribiéndonos directamente por WhatsApp. 🍓</p>
-        <a href="https://api.whatsapp.com/send?phone=573046215719&text=%C2%A1Hola!%20%F0%9F%91%8B%F0%9F%8D%93%20Bienvenido%20a%20Pura%20Fruta%2C%20bebidas%20100%25%20naturales%20y%20llenas%20de%20sabor.%20%C2%BFTe%20gustar%C3%ADa%20hacer%20un%20pedido%20o%20conocer%20m%C3%A1s%20sobre%20nuestros%20productos%3F%20%F0%9F%9B%8D%EF%B8%8F%E2%9C%A8%0A" target="_blank" class="block mt-2 text-green-600 underline">Ir a WhatsApp</a>
-      `;
+    if (estado.opciones) {
+      for (let opcion in estado.opciones) {
+        const btn = document.createElement("button");
+        btn.innerText = opcion;
+        btn.style.margin = "5px";
+        btn.style.padding = "6px 10px";
+        btn.style.border = "none";
+        btn.style.borderRadius = "6px";
+        btn.style.background = "#c4f3ce";
+        btn.style.cursor = "pointer";
+        btn.onclick = () => mostrarMensaje(estado.opciones[opcion]);
+        chat.appendChild(btn);
+      }
     }
 
-    if (option === 'info') {
-      chatMessages.innerHTML += `
-        <p><strong>Tú:</strong> Información del producto</p>
-        <p><strong>Bot:</strong> Nuestras bebidas están hechas 100% de fruta natural 🍍, sin azúcar añadida. Sabores: fresa, mango, kiwi, piña y sandía.</p>
-      `;
+    if (estado.link) {
+      const link = document.createElement("a");
+      link.href = estado.link;
+      link.target = "_blank";
+      link.innerText = "🔗 Ir al enlace";
+      link.style.display = "block";
+      link.style.marginTop = "10px";
+      link.style.color = "#007bff";
+      chat.appendChild(link);
     }
 
-    if (option === 'punto') {
-      chatMessages.innerHTML += `
-        <p><strong>Tú:</strong> Puntos de venta</p>
-        <p><strong>Bot:</strong> Puedes encontrarnos en tiendas locales, ferias artesanales y próximamente en supermercados de Medellín. 🛒</p>
-      `;
-    }
-
-    if (option === 'contacto') {
-      chatMessages.innerHTML += `
-        <p><strong>Tú:</strong> Contacto</p>
-        <p><strong>Bot:</strong> ¿Deseas hablar con nosotros directamente? Haz clic aquí 👇</p>
-        <a href="https://wa.me/573001112233?text=Hola%2C%20quiero%20más%20información%20sobre%20Pura%20Fruta!%20🍓" target="_blank" class="block mt-2 text-green-600 underline">📲 WhatsApp</a>
-      `;
-    }
-
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    chat.scrollTop = chat.scrollHeight;
   }
+
+  window.onload = () => mostrarMensaje(estadoActual);
 </script>
 
   
